@@ -4,12 +4,13 @@ from quandl.learning_setups.aapl_2004_basic_net_difference_set_provider_setup \
     import aapl_2004_basic_net_difference_set_provider_setup
 from quandl.learning_setups.aapl_2004_basic_net_relative_difference_set_provider_setup \
     import aapl_2004_basic_net_relative_difference_set_provider_setup
-from quandl.learning_setups.aapl_2004_lstm_net_relative_difference_set_provider_setup \
-    import aapl_2004_lstm_net_relative_difference_set_provider_setup
+from quandl.learning_setups.aapl_2004_lstm_net_relative_difference_set_provider_setup_24_03 \
+    import aapl_2004_lstm_net_relative_difference_set_provider_setup_24_03
 
 
 #aapl_2004_basic_net_raw_set_provider_setup().fit()
 #aapl_2004_basic_net_difference_set_provider_setup().fit()
 #aapl_2004_basic_net_relative_difference_set_provider_setup().fit()
-aapl_2004_lstm_net_relative_difference_set_provider_setup().fit()
+#aapl_2004_lstm_net_relative_difference_set_provider_setup().fit()
+aapl_2004_lstm_net_relative_difference_set_provider_setup_24_03().fit()
 
