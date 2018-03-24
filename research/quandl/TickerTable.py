@@ -8,8 +8,12 @@ class TickerTable:
         self.train = None
         self.dev = None
 
-    def init_train_dev(self, dev_part=0.2):
-        train_length = math.floor(len(self.data) * dev_part)
+    def init_train_dev(self, dev_part=0.2, min_dev_length=0):
+        dev_length = math.floor(len(self.data) * dev_part)
+        if dev_length < min_dev_length:
+            dev_length = min_dev_length
+
+        train_length = len(self.data) - dev_length
         self.train = self.data[0:train_length - 1]
         self.dev = self.data[train_length:]
 

@@ -1,6 +1,6 @@
 import csv
 from dateutil.parser import parse
-from TickerTable import TickerTable, TickerRow
+from quandl.TickerTable import TickerTable, TickerRow
 
 
 class FileReader:
@@ -14,7 +14,7 @@ class FileReader:
 
         return rows
 
-    def read_ticker(self, ticker):
+    def read_ticker(self, ticker, start_date='1900-01-01'):
         raw_data = self.read_csv('data/tickers/' + ticker + '.csv')
         rows = list(map(
             lambda row: TickerRow(
@@ -33,7 +33,7 @@ class FileReader:
                 adj_close_value=float(row[12]),
                 adj_volume=float(row[13])
             ),
-            raw_data
+            filter(lambda row: row[1] >= start_date, raw_data)
         ))
         ticker_data = TickerTable(rows)
 

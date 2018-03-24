@@ -1,4 +1,15 @@
-from FileReader import FileReader
+from quandl.learning_setups.aapl_2004_basic_net_raw_set_provider_setup \
+    import aapl_2004_basic_net_raw_set_provider_setup
+from quandl.learning_setups.aapl_2004_basic_net_difference_set_provider_setup \
+    import aapl_2004_basic_net_difference_set_provider_setup
+from quandl.learning_setups.aapl_2004_basic_net_relative_difference_set_provider_setup \
+    import aapl_2004_basic_net_relative_difference_set_provider_setup
+from quandl.learning_setups.aapl_2004_lstm_net_relative_difference_set_provider_setup \
+    import aapl_2004_lstm_net_relative_difference_set_provider_setup
 
-file_reader = FileReader()
-aapl_data = file_reader.read_ticker('AAPL')
+
+#aapl_2004_basic_net_raw_set_provider_setup().fit()
+#aapl_2004_basic_net_difference_set_provider_setup().fit()
+#aapl_2004_basic_net_relative_difference_set_provider_setup().fit()
+aapl_2004_lstm_net_relative_difference_set_provider_setup().fit()
+
