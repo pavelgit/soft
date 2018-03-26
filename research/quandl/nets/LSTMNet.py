@@ -3,7 +3,6 @@ from keras.layers.advanced_activations import LeakyReLU
 from keras.models import Model
 from keras import optimizers
 
-
 class LSTMNet:
 
     def __init__(self, day_range):
@@ -35,7 +34,9 @@ class LSTMNet:
         self.model = Model(inputs=x_input, outputs=x)
 
         optimizer = optimizers.Adam(lr=0.01)
-        self.model.compile(optimizer=optimizer, loss='mean_squared_error', metrics=['accuracy'])
+        self.model.compile(optimizer=optimizer, loss='mean_squared_error', metrics=[
+            'accuracy'
+        ])
 
     def fit(self, train_inputs, train_outputs, dev_inputs, dev_outputs, tensor_board, epochs=100):
         self.model.fit(

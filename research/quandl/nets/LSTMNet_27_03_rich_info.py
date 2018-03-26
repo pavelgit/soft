@@ -18,7 +18,7 @@ class ClassAccuracyMetric:
         return successful_of_class_sum / items_of_class_sum
 
 
-class LSTMNet_24_03:
+class LSTMNet_27_03_rich_info:
 
     def __init__(self, day_range):
         self.day_range = day_range
@@ -26,9 +26,19 @@ class LSTMNet_24_03:
         self.init_model()
 
     def init_model(self):
-        x_input = Input((self.day_range, 1))
+        x_input = Input((self.day_range, 6))
 
         x = x_input
+
+        x = BatchNormalization()(x)
+        x = Dense(20)(x)
+        x = LeakyReLU()(x)
+        x = Dropout(0.3)(x)
+
+        x = BatchNormalization()(x)
+        x = Dense(5)(x)
+        x = LeakyReLU()(x)
+        x = Dropout(0.3)(x)
 
         x = LSTM(100)(x)
         x = Dropout(0.3)(x)
