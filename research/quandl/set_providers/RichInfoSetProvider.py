@@ -3,11 +3,17 @@ import numpy as np
 
 class RichInfoSetProvider:
 
+    def __init__(self):
+        self.low_class_margin = -0.0037
+        self.high_class_margin = 0.0057
+        # self.low_class_margin = -0.0041
+        # self.high_class_margin = 0.0087
+
     def _get_class_one_hot(self, difference):
 
-        if difference < -0.0041:
+        if difference < self.low_class_margin:
             difference_class = 0
-        elif difference > 0.0087:
+        elif difference > self.high_class_margin:
             difference_class = 2
         else:
             difference_class = 1

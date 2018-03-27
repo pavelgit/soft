@@ -1,4 +1,4 @@
-from keras.layers import Input, Dense, BatchNormalization, LSTM, Dropout
+from keras.layers import Input, Dense, BatchNormalization, LSTM, Dropout, Conv1D, Concatenate
 from keras.layers.advanced_activations import LeakyReLU
 from keras.models import Model
 from keras import optimizers
@@ -18,7 +18,7 @@ class ClassAccuracyMetric:
         return successful_of_class_sum / items_of_class_sum
 
 
-class LSTMNet_27_03_rich_info:
+class LSTMNet_27_04_conv:
 
     def __init__(self, day_range):
         self.day_range = day_range
@@ -30,38 +30,50 @@ class LSTMNet_27_03_rich_info:
 
         x = x_input
 
-        x = BatchNormalization()(x)
-        x = Dense(30)(x)
+        x_conv_input = BatchNormalization()(x)
+        x_conv_output_3 = Conv1D(30, 3, padding='same')(x_conv_input)
+        x_conv_output_5 = Conv1D(20, 5, padding='same')(x_conv_input)
+        x_conv_output_7 = Conv1D(10, 7, padding='same')(x_conv_input)
+        x_conv_output_11 = Conv1D(5, 11, padding='same')(x_conv_input)
+        x = Concatenate()([x_conv_input, x_conv_output_3, x_conv_output_5, x_conv_output_7, x_conv_output_11])
         x = LeakyReLU()(x)
-        x = Dropout(0.3)(x)
+        x = Dropout(0.2)(x)
 
-        x = BatchNormalization()(x)
-        x = Dense(30)(x)
+        x_conv_input = BatchNormalization()(x)
+        x_conv_output_3 = Conv1D(30, 3, padding='same')(x_conv_input)
+        x_conv_output_5 = Conv1D(20, 5, padding='same')(x_conv_input)
+        x_conv_output_7 = Conv1D(10, 7, padding='same')(x_conv_input)
+        x_conv_output_11 = Conv1D(5, 11, padding='same')(x_conv_input)
+        x = Concatenate()([x_conv_input, x_conv_output_3, x_conv_output_5, x_conv_output_7, x_conv_output_11])
         x = LeakyReLU()(x)
-        x = Dropout(0.3)(x)
+        x = Dropout(0.2)(x)
 
-        x = BatchNormalization()(x)
-        x = Dense(30)(x)
+        x_conv_input = BatchNormalization()(x)
+        x_conv_output_3 = Conv1D(30, 3, padding='same')(x_conv_input)
+        x_conv_output_5 = Conv1D(20, 5, padding='same')(x_conv_input)
+        x_conv_output_7 = Conv1D(10, 7, padding='same')(x_conv_input)
+        x_conv_output_11 = Conv1D(5, 11, padding='same')(x_conv_input)
+        x = Concatenate()([x_conv_input, x_conv_output_3, x_conv_output_5, x_conv_output_7, x_conv_output_11])
         x = LeakyReLU()(x)
-        x = Dropout(0.3)(x)
+        x = Dropout(0.2)(x)
 
         x = LSTM(150)(x)
-        x = Dropout(0.3)(x)
+        x = Dropout(0.2)(x)
 
         x = BatchNormalization()(x)
         x = Dense(80)(x)
         x = LeakyReLU()(x)
-        x = Dropout(0.3)(x)
+        x = Dropout(0.2)(x)
 
         x = BatchNormalization()(x)
         x = Dense(40)(x)
         x = LeakyReLU()(x)
-        x = Dropout(0.3)(x)
+        x = Dropout(0.2)(x)
 
         x = BatchNormalization()(x)
         x = Dense(20)(x)
         x = LeakyReLU()(x)
-        x = Dropout(0.3)(x)
+        x = Dropout(0.2)(x)
 
         x = Dense(3, activation='softmax')(x)
 
